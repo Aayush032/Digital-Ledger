@@ -1,3 +1,4 @@
+import 'package:digital_ledger/screens/intro_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,6 +10,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.blue,
+          brightness: Brightness.dark)
+      ),
+      home: const IntroScreen(),
+    );
   }
 }
