@@ -1,5 +1,5 @@
 import 'package:digital_ledger/screens/login_screen.dart';
-import 'package:digital_ledger/utils/colors.dart';
+import 'package:digital_ledger/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class IntroScreen extends StatelessWidget {

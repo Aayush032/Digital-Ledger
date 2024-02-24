@@ -7,6 +7,7 @@ class CustomTextField extends StatelessWidget {
   final bool isPass;
   final TextInputType type;
   final String? Function(String?)? validator;
+
   const CustomTextField(
     {
       super.key,
@@ -22,7 +23,7 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       controller: editingController,
       decoration: InputDecoration(
-        fillColor: Color.fromARGB(255, 56, 29, 29),
+        fillColor: const Color.fromARGB(255, 56, 29, 29),
         filled: true,
         label: Text(label),
         labelStyle: const TextStyle(color: Colors.white60),
@@ -35,6 +36,7 @@ class CustomTextField extends StatelessWidget {
       obscureText: isPass,
       keyboardType: type,
       validator: validator,
+     autovalidateMode: AutovalidateMode.onUserInteraction,
     );
   }
 }
