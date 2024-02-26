@@ -1,4 +1,12 @@
 class Validator{
+   String? emptyValidator(value){
+    if(value!.isEmpty){
+      return "Please fill the field";
+    }
+    else{
+      return null;
+    }
+  }
   String? usernameValidator(value){
     if(value!.isEmpty){
       return "Please enter a username";

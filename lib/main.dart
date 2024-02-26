@@ -1,5 +1,7 @@
 import 'package:digital_ledger/firebase_options.dart';
+import 'package:digital_ledger/screens/dashboard_screen.dart';
 import 'package:digital_ledger/screens/intro_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +27,24 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark)
       ),
       //home: const IntroScreen(),
-      home: IntroScreen(),
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot){
+          if(snapshot.connectionState == ConnectionState.active){
+            if(snapshot.hasData){
+            return DashboardScreen();
+            }
+          }
+          else if(snapshot.hasError){
+            return Center(
+              child:Text("${snapshot.error}") ,
+            );
+          }
+          if(snapshot.connectionState == ConnectionState.waiting){
+            return const Center(child: CircularProgressIndicator(),);
+          }
+          return IntroScreen();
+        }),
     );
   }
 }

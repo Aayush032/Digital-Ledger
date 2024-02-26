@@ -1,3 +1,4 @@
+import 'package:digital_ledger/services/storage_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthServices {
@@ -8,6 +9,7 @@ class AuthServices {
       await _auth.createUserWithEmailAndPassword(
           email: data["email"], password: data["password"]);
       res = "success";
+      StorageServices().storeNewUser(data, context);
     }
     on FirebaseAuthException catch(e){
       if(e.code == "email-already-in-use"){

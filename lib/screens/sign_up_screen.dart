@@ -41,6 +41,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
         "username": usernameController.text,
         "email": emailController.text,
         "password": passwordController.text,
+        "totalBalance": 0,
+        "totalCredit" : 0,
+        "totalDebit" : 0,
       };
       String res = await AuthServices().createUser(data, context);
       if (res == "success") {
