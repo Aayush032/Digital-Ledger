@@ -21,11 +21,12 @@ class _AddBusinessState extends State<AddBusiness> {
         setState(() {
           isLoading = true;
         });
-        var data = {
-          "businessName": businessController.text,
-          "totalCredit" : 0,
-          "totalDebit" : 0,
-        };
+        // var data = {
+        //   "businessName": businessController.text,
+        //   "totalCredit" : 0,
+        //   "totalDebit" : 0,
+        // };
+        var data = businessController.text;
         String res = await StorageServices().storeNewBusiness(data);
         setState(() {
           isLoading = false;

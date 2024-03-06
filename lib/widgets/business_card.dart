@@ -70,7 +70,7 @@ class BusinessDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BusinessScreen()));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BusinessScreen(data: data)));
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
