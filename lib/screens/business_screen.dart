@@ -115,7 +115,10 @@ class SingleTransaction extends StatelessWidget {
           }
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
             return const Center(
-              child: Text("No Transactions found", style: TextStyle(color: Colors.black87),),
+              child: Text(
+                "No Transactions found",
+                style: TextStyle(color: Colors.black87),
+              ),
             );
           }
           var data = snapshot.data!.docs;
@@ -141,7 +144,6 @@ class TransactionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
     return Container(
       //height: 100,
       // padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
@@ -159,29 +161,62 @@ class TransactionCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListTile(
-          title: Text(
-            "${data["transactionName"]}",
-            style: const TextStyle(
-                color: Colors.black, fontWeight: FontWeight.w600, fontSize: 22),
-          ),
-          subtitle: Text(
-            DateFormat.yMMMd().format(data["datePublished"].toDate()),
-            style: const TextStyle(color: Colors.black87),
-          ),
-          trailing: Column(
-            //  mainAxisAlignment: MainAxisAlignment.,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Icon(
-                Icons.delete,
-                color: Colors.red[800],
-              ),
-              //const SizedBox(height: 10,),
               Text(
-                "${data["amount"]}",
-                style: TextStyle(color: data["type"] == "credit"?credit: debit, fontSize: 22),
+                "${data["transactionName"]}",
+                style: const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 22),
               ),
+              const Icon(
+                Icons.delete,
+                color: Color.fromARGB(255, 132, 13, 5),
+              )
             ],
           ),
+          subtitle: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                DateFormat.yMMMd().format(data["datePublished"].toDate()),
+                style: const TextStyle(color: Colors.black87),
+              ),
+              Row(
+                children: [
+                  Icon(data["type"]=="credit"?Icons.arrow_upward:Icons.arrow_downward, color:data["type"] == "credit" ? credit : debit,),
+                  Text(
+                    "${data["amount"]}",
+                    style: TextStyle(
+                        color: data["type"] == "credit" ? credit : debit,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600
+                        ),
+                  ),
+                ],
+              )
+            ],
+          ),
+          // subtitle: Text(
+          // DateFormat.yMMMd().format(data["datePublished"].toDate()),
+          // style: const TextStyle(color: Colors.black87),
+          // ),
+          // trailing: Column(
+          //   //  mainAxisAlignment: MainAxisAlignment.,
+          //   children: [
+          //     Icon(
+          //       Icons.delete,
+          //       color: Colors.red[800],
+          //     ),
+          //     //const SizedBox(height: 10,),
+          //     Text(
+          //       "${data["amount"]}",
+          //       style: TextStyle(color: data["type"] == "credit"?credit: debit, fontSize: 22),
+          //     ),
+          //   ],
+          // ),
         ),
       ),
     );
